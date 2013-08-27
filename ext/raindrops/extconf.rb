@@ -12,6 +12,10 @@ have_func("getpagesize", "unistd.h")
 have_func('rb_thread_blocking_region')
 have_func('rb_thread_io_blocking_region')
 
+if CONFIG["arch"]=~/solaris/
+  $CPPFLAGS += " -march=native"
+end
+
 checking_for "GCC 4+ atomic builtins" do
   # we test CMPXCHG anyways even though we don't need it to filter out
   # ancient i386-only targets without CMPXCHG
